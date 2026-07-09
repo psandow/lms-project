@@ -17,3 +17,8 @@ class IsAdmin(BasePermission):
         if request.user.role != 'admin':
             raise PermissionDenied("You do not have permission to perform this action.")
         return True
+
+#tested as working when creating a course with Postman /courses/create/ as teacher.    
+class IsTeacherOrAdmin(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.role in ['teacher', 'admin']
