@@ -16,6 +16,7 @@ class StudentRegisterView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(password=make_password(self.request.data.get('password')), role='student')
 
+#tested with Postman.
 class TeacherRegisterView(generics.CreateAPIView):
     queryset = User.objects.filter(role='teacher')
     serializer_class = UserSerializer
@@ -40,7 +41,7 @@ class CourseListView(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsAdmin]
 
-#need to test.
+#GET request to /courses/taught/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Returns a list of courses taught by the authenticated teacher.
 class TeacherCourseListView(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsTeacher]
@@ -48,7 +49,7 @@ class TeacherCourseListView(generics.ListAPIView):
     def get_queryset(self):
         return Course.objects.filter(teacher=self.request.user)
 
-#need to test. Need to enroll a student in a course first.
+#GET request to /courses/enrolled/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Returns a list of courses the authenticated student is enrolled in.
 class StudentCourseListView(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsStudent]
@@ -70,4 +71,17 @@ class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdmin]
+
+#PUT request to /courses/<int:pk>/enroll/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Enrolls the authenticated student in the course with the given pk.
+class CourseEnrollView(generics.UpdateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsStudent]
+
+    def update(self, request, *args, **kwargs):
+        course = self.get_object()
+        course.students.add(request.user)
+        course.save()
+        return Response({"detail": "Enrolled successfully"})
+
 
