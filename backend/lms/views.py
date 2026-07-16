@@ -24,6 +24,14 @@ class TeacherRegisterView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(password=make_password(self.request.data.get('password')), role='teacher')
 
+#tested with Postman. Note open admin registeration. Should restrict?
+class AdminRegisterView(generics.CreateAPIView):
+    queryset = User.objects.filter(role='admin')
+    serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(password=make_password(self.request.data.get('password')), role='admin')
+
 # tested with Postman, works as expected (GET /api/auth/me/ with Authorization header "Bearer <access_token
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
@@ -35,7 +43,7 @@ class MeView(APIView):
             "role": request.user.role
         })
 
-#need to test. need to create register admin first.
+#GET request to /courses/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Returns a list of all courses.
 class CourseListView(generics.ListAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -66,7 +74,7 @@ class CourseCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save()
 
-#not tested yet. Need to add urls
+#tested with Postman, works as expected. GET request to /users/
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -84,4 +92,57 @@ class CourseEnrollView(generics.UpdateAPIView):
         course.save()
         return Response({"detail": "Enrolled successfully"})
 
+#GET request tested with two students to shows all courses that the student is not enrolled in. GET request to /courses/available/
+class StudentAvailableCoursesView(generics.ListAPIView):
+    serializer_class = CourseSerializer
+    permission_classes = [IsStudent]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Course.objects.exclude(students=user)
+
+#PUT request to /courses/1/complete/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Marks the course with the given pk as complete.
+class CourseCompleteView(generics.UpdateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsTeacherOrAdmin]
+
+    def update(self, request, *args, **kwargs):
+        course = self.get_object()
+        course.is_complete = True
+        course.save()
+        return Response(self.get_serializer(course).data)
+
+#PATCH request to /courses/1/update/ with Authorization header "Bearer <access_token" and JSON body {"description": "Updated course description"}. Tested with Postman, works as expected. Updates the course with the given pk.
+class CourseUpdateView(generics.UpdateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsTeacherOrAdmin]
+
+#not tested. GET.
+class CourseDetailView(generics.RetrieveAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsAuthenticated]
+
+#not tested. DELETE.
+class CourseDeleteView(generics.DestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsAdmin]
+
+class UserDetailView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdmin]
+
+class UserUpdateView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdmin]
+
+class UserDeleteView(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAdmin]
 
