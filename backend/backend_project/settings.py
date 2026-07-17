@@ -39,9 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lms',
     'rest_framework',
+    'corsheaders',
 ]
 
 AUTH_USER_MODEL = 'lms.User'
+
+# CORS configuration to allow requests from the frontend application running on localhost:5173. This is necessary for enabling cross-origin requests between the frontend and backend during development.
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +57,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend_project.urls'
