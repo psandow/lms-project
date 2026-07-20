@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
-import StudentDashboard from "../pages/StudentDashboard";
+import StudentDashboard from "../components/dashboard/StudentDashboard";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 // Defining the routes for the application using React Router's createBrowserRouter function. Each route is associated with a specific component that will be rendered when the route is accessed.
 
@@ -11,7 +12,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/student",
-    element: <StudentDashboard />,
+    element: (
+      <DashboardLayout role="student">
+        <StudentDashboard />
+      </DashboardLayout>
+    ),
   },
 ]);
 
