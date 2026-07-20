@@ -8,15 +8,17 @@ function LoginPage() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
     //console.log("handleSubmit called with username:", username, "and password:", password);
 
-    const userData = await login(username, password);
-    //console.log("userData:", userData);
+   
+    try {
+        const userData = await login(username, password);
 
-    if (userData?.role === "student") {
+        if (userData?.role === "student") {
       navigate("/student");
     } else if (userData?.role === "teacher") {
       navigate("/teacher");
@@ -25,14 +27,22 @@ function LoginPage() {
     } else {
       navigate("/");
     }
+
+    } catch (error) {
+        setError(error.message);
+    }
+    
   }
 
   return (
     <div style={{ maxWidth: "400px", margin: "0 auto" }}>
-      <h1>Login</h1>
+      <h1>Welcome to LMS Login</h1>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
         <input
+          label="Username"
           type="text"
           placeholder="Username"
           value={username}
@@ -40,6 +50,7 @@ function LoginPage() {
         />
 
         <input
+          label="Password"       
           type="password"
           placeholder="Password"
           value={password}
