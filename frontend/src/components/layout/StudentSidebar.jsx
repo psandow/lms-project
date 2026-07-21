@@ -9,7 +9,7 @@ export default function StudentSidebar({ user }) {
 
 
       <nav className="nav">
-        <NavLink to="/student">Dashboard</NavLink>
+        <NavLink to="/student" end>Dashboard</NavLink>
         <NavLink to="/courses">Browse Courses</NavLink>
         <NavLink to="/enrollments">My Enrollments</NavLink>
       </nav>

@@ -6,9 +6,8 @@ export default function AdminSidebar({ user }) {
       <div className="logo">
         <div className="logo-box" /> <span>LMS</span>
       </div>
-
       <nav className="nav">
-        <NavLink to="/admin">Dashboard</NavLink>
+        <NavLink to="/admin" end>Dashboard</NavLink>
         <NavLink to="/admin/courses">All Courses</NavLink>
         <NavLink to="/admin/users">Manage Users</NavLink>
       </nav>

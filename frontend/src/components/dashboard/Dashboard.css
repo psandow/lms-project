@@ -124,6 +124,17 @@
   margin: 0;
 }
 
+.overview-card.clickable {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.overview-card.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 5, 1, 0.2);
+}
+
+
 .courses-grid {
   display: flex;
   flex-wrap: wrap;
@@ -184,4 +195,89 @@
   .course-card {
     flex: 1 1 100%;
   }
+}
+
+.courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: #ADE1E5;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.courses-table thead th {
+  background-color: #73AB84;
+  color: #000501;
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.courses-table td {
+  padding: 0.75rem 1rem;
+  color: #000501;
+}
+
+.courses-table tbody tr:nth-child(even) {
+  background-color: #99D19C;
+}
+
+.courses-table tbody tr:nth-child(odd) {
+  background-color: #79C7C5;
+}
+
+.courses-table td.description-cell {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 350px;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: #ADE1E5;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+.users-table th {
+  background-color: #73AB84;
+  color: #000501;
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.users-table td {
+  padding: 0.75rem 1rem;
+  color: #000501;
+}
+
+.users-table tr:nth-child(even) {
+  background-color: #99D19C;
+}
+
+.users-table tr:nth-child(odd) {
+  background-color: #79C7C5;
+}
+
+/* Action buttons */
+.action-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.action-btn.delete {
+  color: #b30000;
+}
+
+.action-btn:hover {
+  text-decoration: underline;
 }
