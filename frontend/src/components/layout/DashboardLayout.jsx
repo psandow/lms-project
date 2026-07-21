@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-
+import "../dashboard/Dashboard.css";
 import StudentSidebar from "./StudentSidebar";
 import TeacherSidebar from "./TeacherSidebar";
 import AdminSidebar from "./AdminSidebar";
