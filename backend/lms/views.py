@@ -40,7 +40,8 @@ class MeView(APIView):
         return Response({
             "id": request.user.id,
             "username": request.user.username,
-            "role": request.user.role
+            "role": request.user.role,
+            "email": request.user.email
         })
 
 #GET request to /courses/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Returns a list of all courses.
@@ -72,7 +73,7 @@ class CourseCreateView(generics.CreateAPIView):
     permission_classes = [IsTeacherOrAdmin]
 
     def perform_create(self, serializer):
-        serializer.save()
+        serializer.save(teacher=self)
 
 #tested with Postman, works as expected. GET request to /users/
 class UserListView(generics.ListAPIView):

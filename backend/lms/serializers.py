@@ -9,11 +9,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 #tested with Postman, works as expected
 class CourseSerializer(serializers.ModelSerializer):
-    teacher = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.filter(role='teacher')
-    )
+    teacher_name = serializers.CharField(source='teacher.username', read_only=True)
 
     class Meta:
         model = Course
-        fields = ['id', 'name', 'description', 'teacher', 'students', 'is_complete']
-        read_only_fields = ['students']
+        fields = ['id', 'name', 'description', 'teacher', 'teacher_name', 'students', 'is_complete']
+        read_only_fields = ['students', 'teacher']
