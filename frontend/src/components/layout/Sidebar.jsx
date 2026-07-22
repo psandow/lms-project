@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom";
 
-export default function StudentSidebar({ user }) {
+export default function Sidebar({ user, links }) {
   return (
     <aside className="sidebar">
       <div className="logo">
         <span className="logo-text">LMS</span>
       </div>
 
-
       <nav className="nav">
-        <NavLink to="/student" end>Dashboard</NavLink>
-        <NavLink to="/courses">Browse Courses</NavLink>
-        <NavLink to="/enrollments">My Enrollments</NavLink>
+        {links.map((link) => (
+          <NavLink key={link.to} to={link.to} end={link.end}>
+            {link.label}
+          </NavLink>
+        ))}
       </nav>
 
       <div className="user-info">

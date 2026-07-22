@@ -1,27 +1,34 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Sidebar from "./Sidebar";
 import "../dashboard/Dashboard.css";
-import StudentSidebar from "./StudentSidebar";
-import TeacherSidebar from "./TeacherSidebar";
-import AdminSidebar from "./AdminSidebar";
 
 export default function DashboardLayout({ role, children }) {
   const { user } = useContext(AuthContext);
 
-  const renderSidebar = () => {
-    switch (role) {
-      case "teacher":
-        return <TeacherSidebar user={user} />;
-      case "admin":
-        return <AdminSidebar user={user} />;
-      default:
-        return <StudentSidebar user={user} />;
-    }
+  const linksByRole = {
+    student: [
+      { label: "Dashboard", to: "/student", end: true },
+      { label: "Browse Courses", to: "/courses" },
+      { label: "My Enrollments", to: "/enrollments" },
+    ],
+    teacher: [
+      { label: "Dashboard", to: "/teacher", end: true },
+      { label: "My Courses", to: "/teacher/courses" },
+      { label: "Create Course", to: "/teacher/create-course" },
+    ],
+    admin: [
+      { label: "Dashboard", to: "/admin", end: true },
+      { label: "All Courses", to: "/admin/courses" },
+      { label: "Manage Users", to: "/admin/users" },
+    ],
   };
 
+  const links = linksByRole[role] || linksByRole.student;
+// Pass user and role‑based links into Sidebar as props
   return (
     <div className="dashboard-layout">
-      {renderSidebar()}
+      <Sidebar user={user} links={links} />
       <main className="dashboard-content">{children}</main>
     </div>
   );
