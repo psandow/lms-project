@@ -265,7 +265,6 @@
   background-color: #79C7C5;
 }
 
-/* Action buttons */
 .action-btn {
   border: none;
   background: none;
@@ -280,4 +279,72 @@
 
 .action-btn:hover {
   text-decoration: underline;
+}
+
+.course-actions button {
+  margin-top: 10px;
+  margin-right: 5px;
+  padding: 6px 10px;
+  border: none;
+  background-color: #ade1e5;
+  color: #000501;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.course-actions button:hover {
+  background-color: #000501;
+  color: #ade1e5;
+}
+
+.create-course {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #73AB84;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 5, 1, 0.2);
+  color: #000501;
+}
+
+.course-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  color: #000501;
+}
+
+.course-form input,
+.course-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #73AB84;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #000501;
+}
+
+.course-form input:focus,
+.course-form textarea:focus {
+  outline: 2px solid #73AB84;
+}
+
+.course-form-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: #ADE1E5;
+  color: #000501;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.course-form-button:hover {
+  background-color: #000501;
+  color: #ade1e5;
 }
