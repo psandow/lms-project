@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { signout } from "../../utils/signout";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Sidebar({ user, links }) {
+  const navigate = useNavigate();
+
   return (
     <aside className="sidebar">
       <div className="logo">
@@ -18,7 +23,7 @@ export default function Sidebar({ user, links }) {
       <div className="user-info">
         <p>{user?.username || "Loading..."}</p>
         <p>{user?.email || ""}</p>
-        <button>Sign out</button>
+        <button onClick={() => signout(navigate)}>Sign out</button>
       </div>
     </aside>
   );

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosinstance";
 import "../components/dashboard/Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ManageUsers() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchUsers() {
@@ -18,14 +20,13 @@ export default function ManageUsers() {
   }, []);
 
   const handleEdit = (id) => {
-    console.log("Edit user:", id);
-    // later: navigate(`/admin/users/${id}/edit`);
+    navigate(`/admin/edit-user/${id}`);
   };
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axiosInstance.delete(`/users/${id}/`);
+      await axiosInstance.delete(`/users/${id}/delete/`);
       setUsers(users.filter((u) => u.id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);

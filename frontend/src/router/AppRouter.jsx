@@ -8,6 +8,8 @@ import ManageUsers from "../pages/ManageUsers";
 import MyCourses from "../pages/MyCourses";
 import CreateCourse from "../pages/CreateCourse";
 import EditCourse from "../pages/EditCourse";
+import CreateUser from "../pages/CreateUser";
+import EditUser from "../pages/EditUser";
 
 // Defining the routes for the application using React Router's createBrowserRouter function. Each route is associated with a specific component that will be rendered when the route is accessed.
 
@@ -15,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />,
+  },
+  {
+    path: "create-user",
+    element: <CreateUser />,
   },
   {
     path: "/student",
@@ -71,6 +77,10 @@ const router = createBrowserRouter([
         <ManageUsers />
       </DashboardLayout>
     ),
+  },
+  {
+  path: "/admin/edit-user/:id",
+  element: <EditUser />
   },
 
 ]);

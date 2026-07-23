@@ -35,12 +35,16 @@ function LoginPage() {
   }
 
   return (
-    <div style={{ maxWidth: "400px", margin: "0 auto" }}>
-      <h1>Welcome to LMS Login</h1>
+    <section className="create-course">
+      <div className="logo">
+        <span className="logo-text">LMS</span>
+      </div>
+      <h2 className="text">Welcome to LMS Login & Account creation</h2>
+      <p className="text">Enter your username and password to Login. If you don't have an account click Create Account.</p>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="course-form" onSubmit={handleSubmit}>
         <input
           label="Username"
           type="text"
@@ -57,9 +61,10 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Login</button>
+        <button className="course-form-button" type="submit">Login</button>
+        <button className ="course-form-button" type="button" onClick={() => navigate("/create-user")}>Create Account</button>
       </form>
-    </div>
+    </section>
   );
 }
 
