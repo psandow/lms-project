@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosinstance";
 
 export default function CreateCourse({ initialData = null, onSubmit = null }) {
-  const [title, setTitle] = useState(initialData?.title || "");
+  const [name, setName] = useState(initialData?.name || "");
   const [description, setDescription] = useState(initialData?.description || "");
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const payload = { name: title, description };
-// usable for editting courses. Needs coding and testing.
+    const payload = { name, description };
+// usable for editting courses
     try {
       if (onSubmit) {
         await onSubmit(payload);
@@ -34,8 +34,8 @@ export default function CreateCourse({ initialData = null, onSubmit = null }) {
             Course title
             <input
               type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </label>

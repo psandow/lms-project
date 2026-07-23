@@ -22,7 +22,7 @@ export default function MyCourses() {
   async function handleDelete(id) {
     if (!window.confirm("Delete this course?")) return;
     try {
-      await axiosInstance.delete(`/courses/${id}/`);
+      await axiosInstance.delete(`/courses/${id}/delete/`);
       setCourses(prev => prev.filter(c => c.id !== id));
     } catch (err) {
       console.error("Error deleting course:", err);

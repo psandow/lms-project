@@ -7,6 +7,7 @@ import AdminDashboard from "../components/dashboard/AdminDashboard";
 import ManageUsers from "../pages/ManageUsers";
 import MyCourses from "../pages/MyCourses";
 import CreateCourse from "../pages/CreateCourse";
+import EditCourse from "../pages/EditCourse";
 
 // Defining the routes for the application using React Router's createBrowserRouter function. Each route is associated with a specific component that will be rendered when the route is accessed.
 
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
     element: (
       <DashboardLayout role="teacher">
         <CreateCourse />
+      </DashboardLayout>
+    ),
+  },
+  {
+    path: "/teacher/course/:id/edit",
+    element: (
+      <DashboardLayout role="teacher">
+        <EditCourse />
       </DashboardLayout>
     ),
   },
