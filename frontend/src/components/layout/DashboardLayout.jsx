@@ -9,8 +9,8 @@ export default function DashboardLayout({ role, children }) {
   const linksByRole = {
     student: [
       { label: "Dashboard", to: "/student", end: true },
-      { label: "Browse Courses", to: "/courses" },
-      { label: "My Enrollments", to: "/enrollments" },
+      { label: "Browse Courses", to: "/student/browse-courses" },
+      { label: "My Enrollments", to: "/student/enrollments" },
     ],
     teacher: [
       { label: "Dashboard", to: "/teacher", end: true },

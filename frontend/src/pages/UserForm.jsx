@@ -29,7 +29,7 @@ export default function UserForm({
         />
       </label>
 
-    // password field only when creating user
+   {/* password field only when creating user */}
       {submitLabel === "Create User" && (
         <label>
           Password
@@ -43,7 +43,7 @@ export default function UserForm({
         </label>
       )}
 
-    // role field only for admins editting user
+    {/* role field only for admins editting user */}
       {showRole && (
         <label>
           Role

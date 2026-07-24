@@ -64,7 +64,7 @@ export default function TeacherDashboard() {
       <h3>Your courses:</h3>
       <div className="courses-grid">
         {courses.map(c => (
-          <div key={c.id} className="course-card" onClick={() => navigate(`/teacher/course/${c.id}`)}>
+          <div key={c.id} className="course-card" onClick={() => navigate(`/course/${c.id}/edit`)}>
             <h4>{c.name}</h4>
             <p>{c.description}</p>
           </div>

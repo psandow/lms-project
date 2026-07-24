@@ -42,7 +42,7 @@ export default function StudentDashboard() {
       <p>Your learning overview:</p>
 
       <div className="dashboard-overview">
-        <div className="overview-card clickable" onClick={() => navigate("/enrollments")}>
+        <div className="overview-card clickable" onClick={() => navigate("/student/enrollments")}>
           <h3>Enrolled</h3>
           <p>{overview.enrolled} active courses</p>
         </div>
@@ -50,7 +50,7 @@ export default function StudentDashboard() {
           <h3>Available</h3>
           <p>{overview.available} total courses</p>
         </div>
-        <div className="overview-card clickable" onClick={() => navigate("/enrollments")}>
+        <div className="overview-card clickable" onClick={() => navigate("/student/enrollments")}>
           <h3>Completion</h3>
           <p>{overview.completion}% progress</p>
         </div>
