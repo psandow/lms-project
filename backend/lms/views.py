@@ -73,7 +73,7 @@ class CourseCreateView(generics.CreateAPIView):
     permission_classes = [IsTeacherOrAdmin]
 
     def perform_create(self, serializer):
-        serializer.save(teacher=self)
+        serializer.save(teacher=self.request.user)
 
 #tested with Postman, works as expected. GET request to /users/
 class UserListView(generics.ListAPIView):
@@ -93,14 +93,26 @@ class CourseEnrollView(generics.UpdateAPIView):
         course.save()
         return Response({"detail": "Enrolled successfully"})
 
+class CourseUnenrollView(generics.UpdateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsStudent]
+
+    def update(self, request, *args, **kwargs):
+            course = self.get_object()
+            course.students.remove(request.user)
+            course.save()
+            return Response({"detail": "Unenrolled successfully"})
+
 #GET request tested with two students to shows all courses that the student is not enrolled in. GET request to /courses/available/
+# edit: changed to show all courses and frontend manage what to show based on enrolled.
 class StudentAvailableCoursesView(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsStudent]
 
     def get_queryset(self):
         user = self.request.user
-        return Course.objects.exclude(students=user)
+        return Course.objects.all()
 
 #PUT request to /courses/1/complete/ with Authorization header "Bearer <access_token" and no body. Tested with Postman, works as expected. Marks the course with the given pk as complete.
 class CourseCompleteView(generics.UpdateAPIView):
@@ -120,17 +132,17 @@ class CourseUpdateView(generics.UpdateAPIView):
     serializer_class = CourseSerializer
     permission_classes = [IsTeacherOrAdmin]
 
-#not tested. GET.
+#tested with frontend
 class CourseDetailView(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAuthenticated]
 
-#not tested. DELETE.
+#tested with frontend
 class CourseDeleteView(generics.DestroyAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAdmin]
+    permission_classes = [IsTeacherOrAdmin]
 
 class UserDetailView(generics.RetrieveAPIView):
     queryset = User.objects.all()
@@ -146,4 +158,3 @@ class UserDeleteView(generics.DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdmin]
-
