@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Sidebar from "./Sidebar";
 import "../dashboard/Dashboard.css";
+import { useState } from "react";
 
 export default function DashboardLayout({ role, children }) {
   const { user } = useContext(AuthContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   const linksByRole = {
     student: [
@@ -28,7 +30,7 @@ export default function DashboardLayout({ role, children }) {
 // Pass user and role‑based links into Sidebar as props
   return (
     <div className="dashboard-layout">
-      <Sidebar user={user} links={links} />
+      <Sidebar user={user} links={links} isOpen={isOpen} setIsOpen={setIsOpen} />
       <main className="dashboard-content">{children}</main>
     </div>
   );

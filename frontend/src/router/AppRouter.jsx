@@ -13,6 +13,7 @@ import EditUser from "../pages/EditUser";
 import AllCourses from "../pages/AllCourses";
 import MyEnrollments from "../pages/MyEnrollments";
 import BrowseCourses from "../pages/BrowseCourses";
+import EditCourseWrapper from "../components/EditCourseWrapper";
 
 // Defining the routes for the application using React Router's createBrowserRouter function. Each route is associated with a specific component that will be rendered when the route is accessed.
 
@@ -76,9 +77,7 @@ const router = createBrowserRouter([
   {
     path: "/course/:id/edit",
     element: (
-      <DashboardLayout role="teacher">
-        <EditCourse />
-      </DashboardLayout>
+      <EditCourseWrapper />
     ),
   },
   {
@@ -100,13 +99,13 @@ const router = createBrowserRouter([
   {
   path: "/admin/edit-user/:id",
   element: (
-     <DashboardLayout>
+     <DashboardLayout role="admin">
        <EditUser />
      </DashboardLayout>
   ),
   },
   {
-  path: "admin/courses",
+  path: "/admin/courses",
   element: (
       <DashboardLayout role="admin">
         <AllCourses />

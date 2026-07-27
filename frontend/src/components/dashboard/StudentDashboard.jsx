@@ -59,7 +59,7 @@ export default function StudentDashboard() {
       <h3>Continue learning:</h3>
       <div className="courses-grid">
         {courses.map((c) => (
-          <div key={c.id} className="course-card" onClick={() => navigate(`/course/${c.id}`)}>
+          <div key={c.id} className="course-card" /* onClick={() => navigate(`/course/${c.id}`)} */>
             <h4>{c.name}</h4>
             <p>{c.description}</p>
           </div>

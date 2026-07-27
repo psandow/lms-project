@@ -26,6 +26,9 @@
   background-color: #ade1e5;
   color: #000501;
 }
+.burger {
+  display: none;
+}
 
 .sidebar {
   width: 220px;
@@ -186,6 +189,23 @@
 
   .course-card {
     flex: 1 1 100%;
+  }
+
+  .burger {
+    display: block;
+  }
+  .sidebar {
+    width: 50px;;
+  }
+  .sidebar.open {
+    width: 220px;
+  }
+  .sidebar:not(.open) .nav,
+  .sidebar:not(.open) .user-info {
+    display: none;
+  }
+  .dashboard-content {
+    margin-left: 70px;
   }
 }
 
@@ -429,4 +449,10 @@
   outline: none;
   border-color: #73ab84;
   border-width: 2px;
+}
+
+.course-card .enrolled-button {
+  background-color: #000501;
+  color: #79C7C5;
+  cursor:auto
 }

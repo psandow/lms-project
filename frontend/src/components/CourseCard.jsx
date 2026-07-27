@@ -25,7 +25,11 @@ export default function CourseCard({ course, onEdit, onDelete, showTeacher, onUn
           <button className="unenroll-button" onClick={() => onUnenroll(course.id)}>Unenroll</button>
         )}
         {mode === "student-browse" && (
-          <button className="enroll-button" onClick={() => onEnroll(course.id)}>Enroll</button>
+          course.isEnrolled ? (
+            <button className="enrolled-button" disabled>Enrolled</button>
+          ) : (
+            <button className="enroll-button" onClick={() => onEnroll(course.id)}>Enroll</button>
+          )
         )}           
       </div>
     </div>

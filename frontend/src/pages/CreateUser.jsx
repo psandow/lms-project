@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosinstance";
 import UserForm from "../pages/UserForm";
+import { AuthContext } from "../context/AuthContext";
 
 export default function CreateUser() {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -24,7 +26,10 @@ export default function CreateUser() {
 
     try {
       await axiosInstance.post("/auth/register/student/", formData);
-      navigate("/");
+      
+      const userData = await login(formData.username, formData.password);
+
+      navigate("/student");
     } catch (error) {
       setError(error.response?.data || "Error creating user");
     }

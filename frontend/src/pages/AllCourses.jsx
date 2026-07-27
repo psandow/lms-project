@@ -36,6 +36,7 @@ export default function AllCourses() {
             onEdit={(id) => navigate(`/course/${id}/edit`)}
             onDelete={handleDelete}
             showTeacher={true}
+            mode="admin"
           />
         ))}
       </div>
