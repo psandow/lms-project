@@ -1,6 +1,6 @@
-backend/.env
-backend/__pycache__/
-backend/**/*.pyc
-backend/staticfiles/
-backend/media/
+backend/backend_project/.env
+backend/backend_project/__pycache__/
+backend/backend_project/**/*.pyc
+backend/backend_project/staticfiles/
+backend/backend_project/media/
 venv/

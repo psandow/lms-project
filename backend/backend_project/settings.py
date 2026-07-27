@@ -15,8 +15,9 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+PROJECT_DIR = BASE_DIR / "backend_project"
 
-env_path = BASE_DIR / ".env"
+env_path = PROJECT_DIR / ".env"
 if env_path.exists():
     for line in env_path.read_text().splitlines():
         if "=" in line:
