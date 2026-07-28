@@ -7,6 +7,8 @@ import { useState } from "react";
 export default function DashboardLayout({ role, children }) {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  
+  const handleCloseSidebar = () => setIsOpen(false);
 
   const linksByRole = {
     student: [

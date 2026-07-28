@@ -18,7 +18,7 @@ export default function Sidebar({ user, links, isOpen, setIsOpen }) {
 
       <nav className="nav">
         {links.map((link) => (
-          <NavLink key={link.to} to={link.to} end={link.end}>
+          <NavLink key={link.to} to={link.to} end={link.end} onClick={() => setIsOpen(false)}>
             {link.label}
           </NavLink>
         ))}

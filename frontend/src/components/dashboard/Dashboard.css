@@ -153,7 +153,8 @@
 }
 
 .course-card {
-  flex: 1 1 45%;
+  flex: 0 0 calc(45% - 20px);
+  max-width: calc(45% - 20px);
   background-color: #73ab84;
   padding: 20px;
   border-radius: 8px;
@@ -179,6 +180,15 @@
 
 /* Mobile styles. iPhone SE is 375px wide - accomadate this. */
 @media (max-width: 400px) {
+
+  .dashboard-layout {
+  display: flex;
+  min-height: 1100px;
+  min-width: 575px;
+  font-family: Arial, sans-serif;
+  background-color: #ade1e5;
+  color: #000501;
+  }
   .dashboard-content {
     padding: 20px;
   }
@@ -189,6 +199,7 @@
 
   .course-card {
     flex: 1 1 100%;
+    min-width: 425px;
   }
 
   .burger {
@@ -196,9 +207,11 @@
   }
   .sidebar {
     width: 50px;;
+    height: 1100px
   }
   .sidebar.open {
     width: 220px;
+    height: 1000px;
   }
   .sidebar:not(.open) .nav,
   .sidebar:not(.open) .user-info {
@@ -207,10 +220,32 @@
   .dashboard-content {
     margin-left: 70px;
   }
+  .courses-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+  .courses-table th:nth-child(2),
+  .courses-table td:nth-child(2) {
+    display: none;
+  }
+  .filters {
+    flex-wrap: wrap;
+  }
 }
 
 /* Mobile styles. Pixel 7 is 412px wide - accomadate this. */
 @media (max-width: 600px) {
+
+  .dashboard-layout {
+  display: flex;
+  min-height: 1300px;
+  min-width: 575px;
+  font-family: Arial, sans-serif;
+  background-color: #ade1e5;
+  color: #000501;
+  }
   .dashboard-content {
     padding: 20px;
   }
@@ -221,6 +256,39 @@
 
   .course-card {
     flex: 1 1 100%;
+    min-width: 425px;
+  }
+
+  .burger {
+    display: block;
+  }
+  .sidebar {
+    width: 50px;;
+    height: 1300px
+  }
+  .sidebar.open {
+    width: 220px;
+    height: 1250px;
+  }
+  .sidebar:not(.open) .nav,
+  .sidebar:not(.open) .user-info {
+    display: none;
+  }
+  .dashboard-content {
+    margin-left: 70px;
+  }
+  .courses-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+  .courses-table th:nth-child(2),
+  .courses-table td:nth-child(2) {
+    display: none;
+  }
+  .filters {
+    flex-wrap: wrap;
   }
 }
 
@@ -333,6 +401,11 @@
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 5, 1, 0.2);
   color: #000501;
+  font-family: Arial, sans-serif
+}
+
+.course-form {
+  font-family: Arial, sans-serif
 }
 
 .course-form label {
@@ -351,11 +424,13 @@
   background-color: #fff;
   color: #000501;
   margin-bottom: 1rem;
+  box-sizing: border-box;
 }
 
 .course-form input:focus,
 .course-form textarea:focus {
   outline: 2px solid #73AB84;
+  box-sizing: border-box;
 }
 
 .course-form-button {
@@ -371,6 +446,7 @@
   transition: background-color 0.3s ease;
   font-weight: bold;
   margin-top: 0.5rem;
+  box-sizing: border-box;
 }
 
 .course-form-button:hover {

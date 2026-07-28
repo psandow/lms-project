@@ -4,6 +4,7 @@ import axiosInstance from "../api/axiosinstance";
 import UserForm from "../pages/UserForm";
 import { AuthContext } from "../context/AuthContext";
 
+
 export default function CreateUser() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -46,6 +47,7 @@ export default function CreateUser() {
         onSubmit={handleSubmit}
         submitLabel="Create User"
         showRole={false}
+        navigate={navigate}
       />
     </section>
   );

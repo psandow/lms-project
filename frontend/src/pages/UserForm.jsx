@@ -3,13 +3,15 @@ export default function UserForm({
   onChange,
   onSubmit,
   submitLabel,
-  showRole = false
+  showRole = false,
+  navigate
 }) {
   return (
     <form className="course-form" onSubmit={onSubmit}>
-      <label>
+      <label htmlFor="username">
         Username
         <input
+          id="username"
           name="username"
           type="text"
           value={formData.username}
@@ -18,9 +20,10 @@ export default function UserForm({
         />
       </label>
 
-      <label>
+      <label htmlFor="email">
         Email
         <input
+          id="email"
           name="email"
           type="email"
           value={formData.email}
@@ -31,9 +34,10 @@ export default function UserForm({
 
    {/* password field only when creating user */}
       {submitLabel === "Create User" && (
-        <label>
+        <label htmlFor="password">
           Password
           <input
+            id="password"
             name="password"
             type="password"
             value={formData.password}
@@ -45,9 +49,10 @@ export default function UserForm({
 
     {/* role field only for admins editting user */}
       {showRole && (
-        <label>
+        <label htmlFor="role">
           Role
           <select
+            id="role"
             name="role"
             value={formData.role}
             onChange={onChange}
@@ -62,6 +67,10 @@ export default function UserForm({
       <button className="course-form-button" type="submit">
         {submitLabel}
       </button>
+
+      {submitLabel === "Create User" && 
+        <button className="course-form-button" type="button" onClick={() => navigate("/")}>Go Back</button>}
+      
     </form>
   );
 }

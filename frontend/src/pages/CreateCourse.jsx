@@ -30,9 +30,10 @@ export default function CreateCourse({ initialData = null, onSubmit = null }) {
         <p>{initialData ? "Update course details" : "Add a new course"}</p>
 
         <form onSubmit={handleSubmit} className="course-form">
-          <label>
+          <label htmlFor="Course title">
             Course title
             <input
+              id="course title"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -40,9 +41,10 @@ export default function CreateCourse({ initialData = null, onSubmit = null }) {
             />
           </label>
 
-          <label>
+          <label htmlFor="Course description">
             Course description
             <textarea
+              id="Course description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows="5"

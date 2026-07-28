@@ -24,7 +24,7 @@ export default function AllCourses() {
   }
 
   return (
-    <section className="mycourses">
+    <section>
       <h2>All Courses</h2>
       <p>{courses.length} courses</p>
 
