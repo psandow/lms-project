@@ -8,6 +8,7 @@ export default function BrowseCourses() {
   const [selectedTeacher, setSelectedTeacher] = useState("");
   const [error, setError] = useState(null);
   const [showEnrolled, setShowEnrolled] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function fetchCourses() {
@@ -50,7 +51,21 @@ export default function BrowseCourses() {
     ? courses.filter(c => c.teacher_name === selectedTeacher)
     : courses;
 
-  const visibleCourses = filteredCourses.filter(course => showEnrolled ? true : !course.isEnrolled);
+  const searchFiltered = filteredCourses.filter(c => {
+    const term = searchTerm.toLowerCase();
+    
+    const name = c.name?.toLowerCase();
+    const description = c.description?.toLowerCase();
+    const teacher = c.teacher_name?.toLowerCase();
+
+    return (
+      name.includes(term) ||
+      description.includes(term) ||
+      teacher.includes(term)
+    );
+  });
+
+  const visibleCourses = searchFiltered.filter(course => showEnrolled ? true : !course.isEnrolled);
 
   return (
     <section className="dashboard-section">
@@ -60,8 +75,8 @@ export default function BrowseCourses() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div className="filters">
-        <input type="text" placeholder="Search placeholder" />
-        <button onClick={() => {setSelectedTeacher(""); setShowEnrolled(true);}}>All</button>
+        <input type="text" placeholder="Search courses" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+        <button onClick={() => {setSelectedTeacher(""); setShowEnrolled(true); setSearchTerm("");}}>All</button>
         <select
           value={selectedTeacher}
           onChange={e => setSelectedTeacher(e.target.value)}
