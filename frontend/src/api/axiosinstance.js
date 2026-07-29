@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 const axiosInstance = axios.create({
-  baseURL: "/api",
+  baseURL: `${API_BASE_URL}/api`,
 });
 
 // Attach JWT automatically to every request if it exists in localStorage. This is done using an axios interceptor that modifies the request configuration before the request is sent. If a token is found, it adds an Authorization header with the Bearer token to the request.
@@ -32,7 +34,7 @@ axiosInstance.interceptors.response.use(
 
       try {
         // Ask backend for a new access token
-        const res = await axios.post("/api/auth/refresh/", { refresh });
+        const res = await axios.post(`${API_BASE_URL}/api/auth/refresh/`, { refresh });
 
         const newToken = res.data.access;
         localStorage.setItem("access", newToken);
