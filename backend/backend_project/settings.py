@@ -59,7 +59,14 @@ AUTH_USER_MODEL = 'lms.User'
 # CORS configuration to allow requests from the frontend application running on localhost:5173. This is necessary for enabling cross-origin requests between the frontend and backend during development.
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://learn-lms-project.netlify.app",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = ["*"]
+
+CORS_ALLOW_METHODS = ["*"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
