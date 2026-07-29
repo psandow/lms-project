@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import axios from "axios";
+import axiosInstance from "../api/axiosinstance";
 
 // context container to share auth data across app without need to pass props.
 export const AuthContext = createContext();
@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
    // asynchronous function to fetch user data from the backend using the access token. It sends a GET request to the /auth/me/ endpoint with the Authorization header set to the Bearer token. If successful, it updates the user state with the fetched data. If there's an error, it logs it to the console.
   async function fetchUser(token) {
     try {
-      const response = await axios.get("/api/auth/me/", {
+      const response = await axiosInstance.get("/auth/me/", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -38,7 +38,7 @@ export function AuthProvider({ children }) {
   }
    // asynchronous function to send a POST request to the backend for user login. It takes username and password as parameters, sends them to the /auth/login/ endpoint, and expects to receive access and refresh tokens in response. Upon successful login, it updates the access and refresh states, stores the tokens in localStorage, and calls fetchUser to retrieve the logged-in user's data.
   const login = async (username, password) => {
-    const response = await axios.post("/api/auth/login/", {
+    const response = await axiosInstance.post("/auth/login/", {
       username,
       password,
     });
