@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { signout } from "../../utils/signout";
+import { signout } from "../../utils/SignOut";
 import { useNavigate } from "react-router-dom";
 
 
