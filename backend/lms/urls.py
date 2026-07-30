@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AdminRegisterView, CourseEnrollView, CourseListView, MeView, StudentAvailableCoursesView, StudentCourseListView, StudentRegisterView, TeacherCourseListView, TeacherRegisterView, CourseCreateView, UserDeleteView, UserListView, CourseCompleteView, CourseUpdateView, CourseDetailView, UserDetailView, UserUpdateView, CourseDeleteView, CourseUnenrollView
+from .views import AdminRegisterView, CourseEnrollView, CourseListView, MeView, StudentAvailableCoursesView, StudentCourseListView, StudentRegisterView, TeacherCourseListView, TeacherRegisterView, CourseCreateView, UserDeleteView, UserListView, CourseCompleteView, CourseUpdateView, CourseDetailView, UserDetailView, UserUpdateView, CourseDeleteView, CourseUnenrollView, CourseCreateViewAdmin, TeacherListView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
@@ -28,4 +28,6 @@ urlpatterns = [
     path('users/<int:pk>/delete/', UserDeleteView.as_view(), name='user_delete'),
     path('courses/<int:pk>/delete/', CourseDeleteView.as_view(), name='course_delete'),
     path('courses/<int:pk>/unenroll/', CourseUnenrollView.as_view(), name='course-unenroll'),
+    path('courses/create-as-admin/', CourseCreateViewAdmin.as_view(), name='course_create_as_admin'),
+    path("users/teachers/", TeacherListView.as_view(), name="teacher_list"),
 ]

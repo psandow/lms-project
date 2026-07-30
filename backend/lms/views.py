@@ -70,10 +70,18 @@ class StudentCourseListView(generics.ListAPIView):
 class CourseCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsTeacherOrAdmin]
+    permission_classes = [IsTeacher]
 
     def perform_create(self, serializer):
         serializer.save(teacher=self.request.user)
+
+class CourseCreateViewAdmin(generics.CreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [IsAdmin]
+
+    def perform_create(self, serializer):
+        serializer.save()
 
 #tested with Postman, works as expected. GET request to /users/
 class UserListView(generics.ListAPIView):
@@ -158,3 +166,10 @@ class UserDeleteView(generics.DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdmin]
+
+class TeacherListView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAdmin]
+
+    def get_queryset(self):
+        return User.objects.filter(role="teacher")

@@ -13,8 +13,8 @@ class User(AbstractUser):
 
 # not tested yet. on_delete PROTECT added as if required for foreign key relationships.
 class Course(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    name = models.CharField(max_length=75)
+    description = models.TextField(blank=True, max_length=100)
     teacher = models.ForeignKey(
         User,
         on_delete=PROTECT,
