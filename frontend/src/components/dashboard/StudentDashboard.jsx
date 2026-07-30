@@ -46,7 +46,7 @@ export default function StudentDashboard() {
           <h3>Enrolled</h3>
           <p>{overview.enrolled} active courses</p>
         </div>
-        <div className="overview-card clickable" onClick={() => navigate("/courses")}>
+        <div className="overview-card clickable" onClick={() => navigate("/student/browse-courses")}>
           <h3>Available</h3>
           <p>{overview.available} total courses</p>
         </div>

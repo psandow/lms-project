@@ -112,7 +112,14 @@ const router = createBrowserRouter([
       </DashboardLayout>
     ),
   },
-
+  {
+  path: "/admin/create-course",
+  element: (
+      <DashboardLayout role="admin">
+        <CreateCourse />
+      </DashboardLayout>
+    ),
+  },
 ]);
 
 export default router;

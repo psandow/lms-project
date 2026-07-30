@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function DashboardLayout({ role, children }) {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const handleCloseSidebar = () => setIsOpen(false);
 
   const linksByRole = {
@@ -25,6 +25,7 @@ export default function DashboardLayout({ role, children }) {
       { label: "Dashboard", to: "/admin", end: true },
       { label: "All Courses", to: "/admin/courses" },
       { label: "Manage Users", to: "/admin/users" },
+      { label: "Create Course", to: "/admin/create-course"}
     ],
   };
 

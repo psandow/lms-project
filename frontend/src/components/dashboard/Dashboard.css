@@ -121,6 +121,7 @@
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
+  max-width: 443px;
 }
 
 .overview-card h3 {
@@ -179,7 +180,7 @@
 }
 
 /* Mobile styles. iPhone SE is 375px wide - accomadate this. */
-@media (max-width: 400px) {
+@media (max-device-width: 400px) {
 
   .dashboard-layout {
   display: flex;
@@ -290,7 +291,7 @@
   .filters {
     flex-wrap: wrap;
   }
-}
+} 
 
 .courses-table {
   width: 100%;
