@@ -46,14 +46,14 @@ Wireframe design using Figma, and a consistent high contrast colour palette was 
 [Figma Wireframes – LMS Project](https://www.figma.com/design/Zj6zl7RdRHQtpPI9b7ePsS/LMS-Project)
 
 ## Technologies
-- **Backend
+- Backend
   - Python
   - Django authentication, models and server-side logic
   - Django REST Framework (DRF)
   - SQLite
   - Django SimpleJWT
 
--**Frontend
+- Frontend
   - React
   - Vite
   - JavaScript
@@ -65,7 +65,7 @@ Wireframe design using Figma, and a consistent high contrast colour palette was 
 I have deployed the backend to Render and the frontend to Netlify: https://learn-lms-project.netlify.app/
 
 ## How to clone
--**Prerequisites
+- Prerequisites
   - Git
   - Node.js + npm
   - Python
@@ -77,7 +77,7 @@ Open a terminal eg Git Bash:
 4. npm install
 5. npm run dev
 6. cd backend (in a second terminal)
-7. Python -m venv venv
+7. python -m venv venv
 8. source venv/Scripts/activate
 9. pip install -r requirements.txt
 10. python manage.py migrate
