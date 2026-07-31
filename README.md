@@ -23,16 +23,16 @@ This LMS provides a structured environment where students, teachers, and admins 
   - Full course management: create, edit and delete.
   - User management: edit, delete and update role
   - Access to an admin-level dashboard with system-wide visibility.
--**REST API (Django REST Framework)
+- **REST API (Django REST Framework):**
   - Token based API authentication using JWT access and refresh tokens, automatic renewal handled by frontend.
   - Separate endpoints for users to ensure clean permission handling.
   - JSON responses consumed by the React frontend.
--**Frontend (React + Vite)
+- **Frontend (React + Vite):**
   - Responsive, multi‑page interface built with React components.
   - Role based navigation and dashboards.
   - Accessible UI with colour palette from Coolors.co
   - Interactive forms, and live filtering
--**Testing
+- **Testing:**
   - Manual API call testing with Postman.com
   - API endpoint testing with Django test suite
   - Mock login testing with React Testing Library
